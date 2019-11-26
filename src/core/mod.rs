@@ -1216,7 +1216,9 @@ impl Renderer {
     pub fn new<W: HasRawWindowHandle>(window: &W) -> Result<Self, Error> {
         let adapter = wgpu::Adapter::request(&wgpu::RequestAdapterOptions {
             power_preference: wgpu::PowerPreference::LowPower,
-            backends: wgpu::BackendBit::METAL | wgpu::BackendBit::VULKAN,
+            backends: wgpu::BackendBit::METAL
+                | wgpu::BackendBit::DX12
+                | wgpu::BackendBit::VULKAN,
         })
         .ok_or(Error::NoAdaptersFound)?;
 
